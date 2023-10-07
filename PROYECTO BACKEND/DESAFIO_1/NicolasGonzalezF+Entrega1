@@ -1,0 +1,71 @@
+class productManager{
+    static products =[];
+    static code =0;/**Digamos que con el mismo codigo un producto para multiples cantidades */
+    constructor(title,description,price,thumbnail,stock){
+        this.tile =title;
+        this.description =description;
+        this.price=price;
+        this.thumbnail=thumbnail;
+        this.stock=stock;
+
+        productManager.addProduct(title,description,price,thumbnail,stock); /**llamo el anexo de una vez */
+
+    }
+    //###############################################################################
+    static getProducts(){
+        if (productManager.products.length <1) {return console.log(`Current products \n Empty \n`)}
+        else {
+            console.log(`Current products`);
+            for (let i=0; i< productManager.products.length ; i++){ /** iterar sobre cada diccionario */
+                const currentProduct =productManager.products[i];
+                console.log(`item ${i+1}`);
+                for (const key in currentProduct){/**Iterar sobre cada llave para obtener la info */
+                    console.log(`   ${key}: ${currentProduct[key]}`)
+                }
+            }
+            console.log("\n")
+        }}
+    // #############################################################
+    static addProduct(title,description,price,thumbnail,stock){
+
+        productManager.code ++;
+        let product = {
+            title: title,
+            description:description,
+            price:price,
+            thumbnail:thumbnail,
+            code:productManager.code,
+            stock:stock
+        }
+        productManager.products.push(product); /**Esta variable es de la clase NO del objecto */
+        
+    }
+    //#####################################################################
+    static getProductByid(id){
+        const productList = productManager.products;
+        for (let i=0; i< productList.length ; i++){ /** iterar sobre cada diccionario */
+            const currentProduct =productList[i];
+            if (currentProduct["code"] === id){
+                console.log(`Item found by ID: ${id}`);
+                for (const key in currentProduct){/**Iterar sobre cada llave para obtener la info */
+                    console.log(`   ${key}: ${currentProduct[key]}`)
+                }
+                return  console.log("\n");
+            }
+        }
+        return console.log(`No items found by the ID: ${id}`)
+    }
+
+
+}
+productManager.getProducts();
+
+const item1 = new productManager("testing item 1","This is a testing item",300,"NON",2);
+const item2 = new productManager("testing item 2","This is a testing item",400,"NON",1);
+const item3 = new productManager("testing item 3","This is a testing item",40,"NON",1);
+
+productManager.getProducts();
+
+productManager.getProductByid(2)
+productManager.getProductByid(4)
+
