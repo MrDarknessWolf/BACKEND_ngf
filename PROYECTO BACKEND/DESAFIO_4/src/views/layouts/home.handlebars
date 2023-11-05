@@ -1,0 +1,16 @@
+
+<h1>This are the products currently in database</h1>
+<div>
+        {{#each items}}
+        <ul id={{this.title}}>
+        <h2>ID:{{this.id}} Name: {{this.title}}</h2>
+        <img src="{{this.thumbnail}}" style="width:150px; border:1px solid black; "alt="img/IMG_2640.png">
+        <li>Description: {{this.description}}</li>
+        <li>Code: {{this.code}}</li>
+        <li>Price: {{this.price}} Bells</li>
+        <li>category:{{this.category}}</li>
+        </ul>
+        </br>
+        {{/each}}
+</div>
+
