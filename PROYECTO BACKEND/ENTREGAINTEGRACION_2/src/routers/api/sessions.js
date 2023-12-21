@@ -50,7 +50,15 @@ router.get("/current", (req, res) => {
 });
 */
 router.get("/current",passportCall("jwt"),authorization("user"),(req, res)=>{
-  res.send({ status: "success", payload: req.user });
+  let user_data=req.user.user
+  //res.send({ status: "success", payload: req.user });
+  let data = {
+    layout: "profile",
+    user: user_data,
+  };
+  console.log("Current user",user_data)
+  io.emit("current_user",user_data);
+  res.render("index", data);
 })
 /////////////////////////////////
 

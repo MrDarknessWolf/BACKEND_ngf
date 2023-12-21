@@ -50,6 +50,7 @@ export const authToken = (req,res,next) =>{
 export const passportCall = (strategy) => {
   return async (req, res, next) => {
     passport.authenticate(strategy, function (err, user, info) {
+      
       if (err) return next(err);
       if (!user) {
         return res

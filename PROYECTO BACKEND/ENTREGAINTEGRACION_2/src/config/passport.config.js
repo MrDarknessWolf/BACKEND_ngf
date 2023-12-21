@@ -15,9 +15,8 @@ const cookieExtractor = (req) => {
   //console.log(2,req.cookies["access_token"])
   if (req && req.cookies) {
     token = req.cookies["access_token"];
-    console.log(token)
-
   }
+  return token;
 };
 
 const initializePassport = () => {
@@ -100,6 +99,7 @@ const initializePassport = () => {
         secretOrKey: process.env.KEYSECRET,
       },
       async (jwt_payload, done) => {
+
         try {
 
           return done(null, jwt_payload);
